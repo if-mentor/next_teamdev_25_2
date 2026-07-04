@@ -1,0 +1,48 @@
+.commentcard {
+  width: 720px;
+  height: 96px;
+  background-color: #e3e3e3;
+  border-radius: 5px;
+  display: flex;
+  align-items: flex-start;
+  padding: 12px;
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.username {
+  margin-left: 19px;
+  font-size: 12px;
+  line-height: 30px;
+  letter-spacing: 0;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.created_at {
+  margin-left: 8px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 0;
+  letter-spacing: 0;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.content {
+  margin-top: 8px;
+  margin-left: 20px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+}
