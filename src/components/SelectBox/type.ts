@@ -1,11 +1,11 @@
-import type { ComponentPropsWithoutRef } from "react";
+import type { ComponentProps } from "react";
 
 export type SelectBoxOption = {
   id: number;
   value: string;
 };
 
-export type SelectBoxProps = Pick<ComponentPropsWithoutRef<"select">, "disabled" | "onChange"> & {
+export type SelectBoxProps = ComponentProps<"select"> & {
   label?: string;
   options: SelectBoxOption[];
   placeholder?: string;

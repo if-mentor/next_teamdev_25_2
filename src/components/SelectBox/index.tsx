@@ -7,11 +7,11 @@ import { ChevronDown } from "lucide-react";
 export default function SelectBox({ label, options, placeholder, ...selectProps }: SelectBoxProps) {
   return (
     <div className={styles.container}>
-      <label className={styles.label} htmlFor="select">
+      <label className={styles.label} htmlFor={selectProps.id}>
         {label}
       </label>
       <div className={styles.selectWrapper}>
-        <select className={styles.select} {...selectProps} name="select" id="select" defaultValue="">
+        <select className={styles.select} {...selectProps}>
           <option value="" disabled hidden>
             {placeholder}
           </option>
