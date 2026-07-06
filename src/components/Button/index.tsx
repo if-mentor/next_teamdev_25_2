@@ -1,16 +1,7 @@
 "use client";
 
-import type { ButtonHTMLAttributes } from "react";
 import styles from "./styles.module.css";
-
-type ButtonVariant = "primary" | "secondary" | "success" | "danger";
-type ButtonSize = "medium" | "large";
-
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  label: string;
-  variant?: ButtonVariant;
-  size?: ButtonSize;
-};
+import type { ButtonProps } from "./type";
 
 const Button = ({ label, variant = "primary", size = "medium", className, ...buttonProps }: ButtonProps) => {
   const buttonClassName = [styles.button, styles[variant], styles[size], className].filter(Boolean).join(" ");
