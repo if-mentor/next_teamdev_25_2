@@ -7,9 +7,13 @@
   overflow: hidden;
 }
 
-.thumbnail {
+.imageWrapper {
+  position: relative;
   width: 100%;
   height: 180px;
+}
+
+.thumbnail {
   object-fit: cover;
 }
 

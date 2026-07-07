@@ -1,9 +1,16 @@
-import styles from "./styles.module.css";
+import Card from "@/components/Card";
 
 export default function Home() {
   return (
-    <div>
-      <h1 className={styles.title}>Hello Teamdev!!</h1>
-    </div>
+    <>
+      <Card
+        title="記事タイトル"
+        author="山田 太郎"
+        category="テック"
+        thumbnailUrl="/sample1.jpg"
+        content="この記事では～について解説します"
+        createdAt="2026-05-31"
+      />
+    </>
   );
 }

@@ -5,7 +5,9 @@ import { CardProps } from "./type";
 const Card = ({ title, author, category, thumbnailUrl, content, createdAt }: CardProps) => {
   return (
     <article className={styles.card}>
-      <Image src={thumbnailUrl} alt="photo" width={280} height={180} className={styles.thumbnail} />
+      <div className={styles.imageWrapper}>
+        <Image src={thumbnailUrl} alt="photo" fill sizes="280px" className={styles.thumbnail} />
+      </div>
 
       <div className={styles.detail}>
         <div className={styles.header}>
