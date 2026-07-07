@@ -6,5 +6,5 @@ export interface CommentCardProps {
   // コメント本文
   content: string;
   // 投稿日時
-  created_at: string;
+  createdDate: string;
 }

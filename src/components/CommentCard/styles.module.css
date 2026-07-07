@@ -1,4 +1,4 @@
-.commentcard {
+.commentCard {
   width: 720px;
   height: 96px;
   background-color: #e3e3e3;
@@ -18,7 +18,7 @@
   align-items: center;
 }
 
-.username {
+.userName {
   margin-left: 19px;
   font-size: 12px;
   line-height: 30px;
@@ -28,7 +28,7 @@
   color: rgba(0, 0, 0, 0.8);
 }
 
-.created_at {
+.createdDate {
   margin-left: 8px;
   font-family: "Noto Sans JP", sans-serif;
   font-weight: 400;
