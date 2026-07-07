@@ -1,0 +1,40 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 240px;
+  min-height: 57px;
+}
+
+.label {
+  font-size: 12px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.selectWrapper {
+  position: relative;
+}
+
+.select {
+  height: 40px;
+  width: 100%;
+  padding: 8px 32px 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #d8d8d8;
+  font-size: medium;
+  appearance: none;
+  cursor: pointer;
+}
+
+.arrow {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 160ms ease;
+  pointer-events: none;
+}
+
+.select:open + .arrow {
+  transform: translateY(-50%) rotate(180deg);
+}
