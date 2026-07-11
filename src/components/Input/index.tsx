@@ -1,27 +1,22 @@
 import type { InputProps } from "./types";
 import styles from "./styles.module.css";
 
-const Input = ({ value, onChange, label, placeholder, disabled, error, name, type, size }: InputProps) => {
+const Input = ({ label, error = "", variantSize = "medium", ...inputProps }: InputProps) => {
   const hasError = error !== "";
 
   return (
     <div>
-      <label htmlFor={name} className={styles.label}>
+      <label htmlFor={inputProps.id} className={styles.label}>
         {label}
       </label>
       <input
-        type={type}
-        name={name}
-        value={value}
-        placeholder={placeholder}
-        disabled={disabled}
-        className={`${styles.input} ${size === "medium" ? styles.medium : styles.large} ${hasError ? styles.input_error : ""}`}
-        onChange={onChange}
+        className={`${styles.input} ${styles[variantSize]} ${hasError && styles.input_error}`}
         aria-invalid={hasError}
-        aria-describedby={hasError ? `${name}-error` : undefined}
+        aria-describedby={hasError ? `${inputProps.name}-error` : undefined}
+        {...inputProps}
       />
       {hasError && (
-        <p id={`${name}-error`} className={styles.input_error_message}>
+        <p id={`${inputProps.name}-error`} className={styles.input_error_message}>
           {error}
         </p>
       )}
