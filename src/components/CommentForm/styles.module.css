@@ -1,0 +1,11 @@
+.commentForm {
+  width: 720px;
+  height: 92px;
+  display: flex;
+  flex-direction: column;
+}
+
+.commentButton {
+  align-self: flex-end;
+  margin-top: 12px;
+}
