@@ -1,9 +1,11 @@
 .medium {
   width: 480px;
+  max-width: 100%;
 }
 
 .large {
   width: 720px;
+  max-width: 100%;
 }
 
 .input {

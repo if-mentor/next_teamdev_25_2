@@ -1,10 +1,11 @@
 .wrapper {
   width: 720px;
+  max-width: 100%;
 }
 
 .uploadArea {
-  width: 720px;
-  height: 360px;
+  width: 100%;
+  aspect-ratio: 2 / 1;
   border: 2px dashed #000000;
   border-radius: 16px;
   background-color: #ffffff;
@@ -42,4 +43,11 @@
   margin-top: 8px;
   color: #ef4444;
   font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .uploadArea {
+    min-height: 220px;
+    aspect-ratio: auto;
+  }
 }

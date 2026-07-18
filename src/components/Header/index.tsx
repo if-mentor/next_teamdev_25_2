@@ -4,8 +4,12 @@ import Link from "next/link";
 import { useState } from "react";
 import styles from "./styles.module.css";
 
-const Header = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+type HeaderProps = {
+  initialAuthenticated?: boolean;
+};
+
+const Header = ({ initialAuthenticated = false }: HeaderProps) => {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(initialAuthenticated);
 
   return (
     <header className={styles.header}>
