@@ -16,18 +16,20 @@ export default function CommentForm() {
 
   return (
     <>
-      <div className={styles.commentForm}>
-        <Input
-          type="text"
-          name="comment"
-          value={comment}
-          placeholder="コメントを入力"
-          disabled={false}
-          variantSize="large"
-          onChange={handleCommentChange}
-        />
-        <Button label="コメント" variant="success" size="medium" className={styles.commentButton} />
-      </div>
+      <form>
+        <div className={styles.commentForm}>
+          <Input
+            type="text"
+            name="comment"
+            value={comment}
+            placeholder="コメントを入力"
+            disabled={false}
+            variantSize="large"
+            onChange={handleCommentChange}
+          />
+          <Button label="コメント" variant="success" size="medium" className={styles.commentButton} />
+        </div>
+      </form>
     </>
   );
 }
