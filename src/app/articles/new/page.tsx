@@ -1,5 +1,4 @@
 import Button from "@/components/Button";
-import Header from "@/components/Header";
 import ImageUploadFile from "@/components/ImageUploadFile";
 import Input from "@/components/Input";
 import SelectBox from "@/components/SelectBox";
@@ -14,48 +13,45 @@ const categoryOptions = [
 
 export default function NewArticlePage() {
   return (
-    <>
-      <Header initialAuthenticated />
-      <main className={styles.main}>
-        <form className={styles.form}>
-          <Input
-            id="title"
-            name="title"
-            type="text"
-            placeholder="タイトルを入力"
-            aria-label="記事タイトル"
-            variantSize="large"
+    <main className={styles.main}>
+      <form className={styles.form}>
+        <Input
+          id="title"
+          name="title"
+          type="text"
+          placeholder="タイトルを入力"
+          aria-label="記事タイトル"
+          variantSize="large"
+          required
+        />
+
+        <ImageUploadFile />
+
+        <div className={styles.category}>
+          <SelectBox
+            id="category"
+            name="category"
+            label="カテゴリ"
+            placeholder="カテゴリ選択"
+            options={categoryOptions}
+            defaultValue=""
             required
           />
+        </div>
 
-          <ImageUploadFile />
+        <textarea
+          id="body"
+          name="body"
+          className={styles.bodyInput}
+          placeholder="本文を入力"
+          aria-label="記事本文"
+          required
+        />
 
-          <div className={styles.category}>
-            <SelectBox
-              id="category"
-              name="category"
-              label="カテゴリ"
-              placeholder="カテゴリ選択"
-              options={categoryOptions}
-              defaultValue=""
-              required
-            />
-          </div>
-
-          <textarea
-            id="body"
-            name="body"
-            className={styles.bodyInput}
-            placeholder="本文を入力"
-            aria-label="記事本文"
-            required
-          />
-
-          <div className={styles.submitButton}>
-            <Button type="submit" label="投稿" variant="success" size="medium" />
-          </div>
-        </form>
-      </main>
-    </>
+        <div className={styles.submitButton}>
+          <Button type="submit" label="投稿" variant="success" size="medium" />
+        </div>
+      </form>
+    </main>
   );
 }
