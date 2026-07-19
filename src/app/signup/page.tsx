@@ -2,7 +2,6 @@
 
 import Button from "@/components/Button";
 import Input from "@/components/Input";
-import Header from "@/components/Header";
 import Link from "next/link";
 import style from "./style.module.css";
 import { useState } from "react";
@@ -14,7 +13,6 @@ const Signup = () => {
 
   return (
     <div className={style.container}>
-      <Header />
       <form className={style.signup_container}>
         <p className={style.signup_title}>新規登録</p>
         <div className={style.signup_form}>
