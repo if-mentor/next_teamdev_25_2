@@ -25,6 +25,7 @@ const Signup = () => {
             label="名前"
             variantSize="medium"
             placeholder="名前を入力"
+            required
           />
           <Input
             id="email"
@@ -35,6 +36,7 @@ const Signup = () => {
             label="メールアドレス"
             variantSize="medium"
             placeholder="メールアドレスを入力"
+            required
           />
           <Input
             id="password"
@@ -45,6 +47,7 @@ const Signup = () => {
             label="パスワード"
             variantSize="medium"
             placeholder="パスワードを入力"
+            required
           />
           <Button className={style.signup_button} type="submit" label="登録する" variant="success" size="large" />
         </div>
