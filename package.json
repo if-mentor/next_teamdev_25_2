@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "test": "node --test --experimental-strip-types src/features/signup/validation.test.ts",
     "lint": "eslint",
     "check": "npx prettier --check \"src/**/*.{css,js,ts,jsx,tsx}\"",
     "format": "npx prettier --write \"src/**/*.{css,js,ts,jsx,tsx}\"",

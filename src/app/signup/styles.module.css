@@ -1,0 +1,141 @@
+.main {
+  display: flex;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 112px 24px 48px;
+  background:
+    radial-gradient(circle at 15% 15%, rgb(196 224 255 / 45%), transparent 32%),
+    radial-gradient(circle at 85% 80%, rgb(225 210 255 / 45%), transparent 30%), #f7f9fc;
+}
+
+.card {
+  width: 100%;
+  max-width: 592px;
+  padding: 48px 56px;
+  border: 1px solid #e4e9f0;
+  border-radius: 20px;
+  background: rgb(255 255 255 / 94%);
+  box-shadow: 0 20px 60px rgb(31 45 61 / 10%);
+}
+
+.heading {
+  margin-bottom: 36px;
+  text-align: center;
+}
+
+.heading h1 {
+  margin-top: 4px;
+  color: #20242a;
+  font-size: 30px;
+  line-height: 1.4;
+}
+
+.heading > p:last-child {
+  margin-top: 8px;
+  color: #66707d;
+  font-size: 14px;
+}
+
+.eyebrow {
+  color: #526cf0;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+}
+
+.form,
+.fieldList {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  align-items: center;
+}
+
+.fieldList {
+  width: 100%;
+  gap: 22px;
+}
+
+.fieldList > div {
+  width: 100%;
+}
+
+.fieldList input {
+  width: 100%;
+  height: 46px;
+  margin-top: 7px;
+  padding: 0 12px;
+  background: #ffffff;
+  color: #20242a;
+  font: inherit;
+}
+
+.fieldList input::placeholder {
+  color: #a4abb5;
+}
+
+.form > button {
+  width: 100%;
+  margin-top: 28px;
+}
+
+.errorMessage,
+.successMessage {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.errorMessage {
+  border: 1px solid #f3b7b4;
+  background: #fff5f4;
+  color: #b42318;
+}
+
+.successMessage {
+  border: 1px solid #a6dfc1;
+  background: #f0fbf5;
+  color: #157347;
+}
+
+.loginGuide {
+  margin-top: 24px;
+  color: #66707d;
+  font-size: 13px;
+}
+
+.loginGuide a {
+  margin-left: 8px;
+  color: #4058d6;
+  font-weight: 700;
+}
+
+.loginGuide a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .main {
+    align-items: flex-start;
+    padding: 96px 16px 32px;
+  }
+
+  .card {
+    padding: 32px 20px;
+    border-radius: 14px;
+  }
+
+  .heading {
+    margin-bottom: 28px;
+  }
+
+  .heading h1 {
+    font-size: 26px;
+  }
+}
