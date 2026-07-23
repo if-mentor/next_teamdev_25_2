@@ -3,7 +3,6 @@ import { CardProps } from "@/components/Card/type";
 import Input from "@/components/Input";
 import Link from "next/link";
 import Card from "@/components/Card";
-import Header from "@/components/Header";
 import styles from "./styles.module.css";
 
 const DUMMY_Data: CardProps[] = [
@@ -57,19 +56,21 @@ const DUMMY_Data: CardProps[] = [
 export default function Home() {
   return (
     <div>
-      <Header />
       <main className={styles.main}>
-        <div className={styles.search}>
-          <Input
-            id="search"
-            type="search"
-            name="search"
-            placeholder="検索したい記事を入力してください"
-            variantSize="medium"
-            disabled={false}
-          />
-          <Button variant="secondary" size="medium" label="検索"></Button>
-        </div>
+        <form>
+          <div className={styles.search}>
+            <Input
+              id="search"
+              type="search"
+              name="search"
+              placeholder="検索したい記事を入力してください"
+              variantSize="medium"
+              disabled={false}
+            />
+            <Button variant="secondary" size="medium" label="検索"></Button>
+          </div>
+        </form>
+
         <div className={styles.articlesList}>
           {DUMMY_Data.map((data) => (
             <div key={data.id}>
