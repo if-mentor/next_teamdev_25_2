@@ -1,0 +1,95 @@
+.main {
+  width: 720px;
+  border-radius: 32px;
+  border: 1px solid #59636e;
+  margin: 136px auto 0;
+  padding-bottom: 24px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  margin-top: 32px;
+  margin-left: 40px;
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 36px;
+  color: #59636e;
+}
+
+.authoricon {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 32px;
+  margin-right: 40px;
+}
+
+.author {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #00000080;
+}
+
+.articlepicture {
+  display: block;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.category {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #18a0fb;
+  margin-top: 16px;
+  margin-left: 630px;
+}
+
+.divcontent {
+  width: 640px;
+  margin: 16px auto 0;
+}
+
+.button {
+  width: 640px;
+  margin: 40px auto 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.time {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #00000080;
+  margin-left: 40px;
+}
+
+.comment {
+  font-family: "Noto Sans JP", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 30px;
+  margin-left: 360px;
+  margin-top: 16px;
+}
+
+.commentform {
+  width: 720px;
+  margin: 0 auto;
+  margin-top: 16px;
+}
+
+.commetcard {
+  width: 720px;
+  margin: 0 auto;
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
