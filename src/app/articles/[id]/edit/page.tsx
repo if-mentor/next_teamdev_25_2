@@ -4,6 +4,7 @@ import Input from "@/components/Input";
 import SelectBox from "@/components/SelectBox";
 import { SelectBoxOption } from "@/components/SelectBox/type";
 import styles from "./styles.module.css";
+import Textarea from "@/components/Textarea";
 
 const options: SelectBoxOption[] = [
   { id: 1, value: "テストA" },
@@ -15,6 +16,7 @@ export default function EditArticlePage() {
   return (
     <form className={styles.form}>
       <Input id="title" name="title" type="text" variantSize="large" placeholder="タイトルを入力" required />
+
       <ImageUploadFile />
 
       <div className={styles.selectBox}>
@@ -29,7 +31,7 @@ export default function EditArticlePage() {
         />
       </div>
 
-      <textarea id="content" name="content" className={styles.content} required />
+      <Textarea id="content" name="content" placeholder="本文を入力" required />
 
       <div className={styles.buttonWrapper}>
         <Button type="submit" label="更新" variant="success" />
