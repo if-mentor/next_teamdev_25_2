@@ -1,0 +1,21 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 720px;
+  margin: 120px auto 0 auto;
+}
+
+.form > :first-child {
+  margin-bottom: 40px;
+}
+
+.selectBox {
+  margin: 24px 0 24px auto;
+}
+
+.buttonWrapper {
+  margin: 32px 0 47px auto;
+  display: flex;
+  gap: 24px;
+}
