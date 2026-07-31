@@ -1,59 +1,25 @@
 import Button from "@/components/Button";
-import { CardProps } from "@/components/Card/type";
 import Input from "@/components/Input";
 import Link from "next/link";
 import Card from "@/components/Card";
 import styles from "./styles.module.css";
 
-const DUMMY_Data: CardProps[] = [
-  {
-    id: "1",
-    title: "記事タイトル",
-    author: "山田　太郎",
-    category: "テック",
-    thumbnailUrl: "/sample1.jpg",
-    content: "この記事では～について解説します",
-    createdAt: "2026-5-31",
-  },
-  {
-    id: "2",
-    title: "記事タイトル",
-    author: "山田　太郎",
-    category: "テック",
-    thumbnailUrl: "/sample2.jpg",
-    content: "この記事では～について解説します",
-    createdAt: "2026-5-31",
-  },
-  {
-    id: "3",
-    title: "記事タイトル",
-    author: "山田　太郎",
-    category: "テック",
-    thumbnailUrl: "/sample3.jpg",
-    content: "この記事では～について解説します",
-    createdAt: "2026-5-31",
-  },
-  {
-    id: "4",
-    title: "記事タイトル",
-    author: "山田　太郎",
-    category: "テック",
-    thumbnailUrl: "/sample4.jpg",
-    content: "この記事では～について解説します",
-    createdAt: "2026-5-31",
-  },
-  {
-    id: "5",
-    title: "記事タイトル",
-    author: "山田　太郎",
-    category: "テック",
-    thumbnailUrl: "/sample5.jpg",
-    content: "この記事では～について解説します",
-    createdAt: "2026-5-31",
-  },
-];
+import { createClient } from "@/utils/supabase/server";
+import { cookies } from "next/headers";
+import { notFound } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+  const cookieStore = await cookies();
+  const supabase = createClient(cookieStore);
+
+  const { data: posts, error } = await supabase
+    .from("posts")
+    .select("id, title, users(name), categories(name), image_path, content, created_at")
+    .order("created_at", { ascending: false });
+
+  if (error) throw new Error(error.message);
+  if (!posts) return notFound();
+
   return (
     <div>
       <main className={styles.main}>
@@ -72,21 +38,33 @@ export default function Home() {
         </form>
 
         <div className={styles.articlesList}>
-          {DUMMY_Data.map((data) => (
-            <div key={data.id}>
-              <Link href={`/articles/${data.id}`}>
-                <Card
-                  id={data.id}
-                  title={data.title}
-                  author={data.author}
-                  category={data.category}
-                  thumbnailUrl={data.thumbnailUrl}
-                  content={data.content}
-                  createdAt={data.createdAt}
-                />
-              </Link>
-            </div>
-          ))}
+          {posts.length === 0 ? (
+            <p>記事がありません</p>
+          ) : (
+            posts.map((data) => (
+              <div key={data.id}>
+                <Link href={`/articles/${data.id}`}>
+                  <Card
+                    id={data.id.toString()}
+                    title={data.title}
+                    author={data.users.name}
+                    category={data.categories.name}
+                    thumbnailUrl={data.image_path}
+                    content={data.content}
+                    createdAt={new Date(data.created_at).toLocaleDateString("ja-JP", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: false,
+                      second: "2-digit",
+                    })}
+                  />
+                </Link>
+              </div>
+            ))
+          )}
         </div>
       </main>
     </div>
