@@ -7,6 +7,7 @@ import styles from "./styles.module.css";
 import { createClient } from "@/utils/supabase/server";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
+import { formatElapsedTime } from "@/utils/formatElapsedTime";
 
 export default async function Home() {
   const cookieStore = await cookies();
@@ -41,25 +42,17 @@ export default async function Home() {
           {posts.length === 0 ? (
             <p>記事がありません</p>
           ) : (
-            posts.map((data) => (
-              <div key={data.id}>
-                <Link href={`/articles/${data.id}`}>
+            posts.map((post) => (
+              <div key={post.id}>
+                <Link href={`/articles/${post.id}`}>
                   <Card
-                    id={data.id.toString()}
-                    title={data.title}
-                    author={data.users.name}
-                    category={data.categories.name}
-                    thumbnailUrl={data.image_path}
-                    content={data.content}
-                    createdAt={new Date(data.created_at).toLocaleDateString("ja-JP", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                      hour: "2-digit",
-                      minute: "2-digit",
-                      hour12: false,
-                      second: "2-digit",
-                    })}
+                    id={post.id.toString()}
+                    title={post.title}
+                    author={post.users.name}
+                    category={post.categories.name}
+                    thumbnailUrl={post.image_path}
+                    content={post.content}
+                    createdAt={formatElapsedTime(post.created_at)}
                   />
                 </Link>
               </div>
