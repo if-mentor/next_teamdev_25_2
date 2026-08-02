@@ -1,7 +1,7 @@
 "use client";
 
 import { ChangeEvent, useEffect, useRef, useState } from "react";
-import styles from "./style.module.css";
+import styles from "./styles.module.css";
 import type { ImageUploadFileProps } from "./type";
 
 const DEFAULT_ACCEPT = "image/png,image/jpeg,image/jpg"; //画像のみ（png/jpeg/jpg）
