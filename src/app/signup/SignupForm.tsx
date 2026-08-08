@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import Button from "@/components/Button";
 import Input from "@/components/Input";
@@ -26,10 +27,10 @@ type SignupResponse = {
 };
 
 export default function SignupForm() {
+  const router = useRouter();
   const [values, setValues] = useState<SignupValues>(INITIAL_VALUES);
   const [errors, setErrors] = useState<SignupFieldErrors>({});
   const [formMessage, setFormMessage] = useState("");
-  const [isSuccess, setIsSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -54,7 +55,6 @@ export default function SignupForm() {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setFormMessage("");
-    setIsSuccess(false);
 
     const validation = validateSignupValues(values);
     setValues(validation.data);
@@ -81,9 +81,7 @@ export default function SignupForm() {
         return;
       }
 
-      setValues(INITIAL_VALUES);
-      setIsSuccess(true);
-      setFormMessage(result.message ?? "登録が完了しました");
+      router.push("/");
     } catch {
       setFormMessage("通信に失敗しました。接続を確認してもう一度お試しください");
     } finally {
@@ -158,7 +156,7 @@ export default function SignupForm() {
       </div>
 
       {formMessage && (
-        <p className={isSuccess ? styles.successMessage : styles.errorMessage} role={isSuccess ? "status" : "alert"}>
+        <p className={styles.errorMessage} role="alert">
           {formMessage}
         </p>
       )}
@@ -166,7 +164,7 @@ export default function SignupForm() {
       <Button
         type="submit"
         label={isSubmitting ? "登録中…" : "新規登録"}
-        variant="secondary"
+        variant="success"
         size="large"
         disabled={isSubmitting}
       />

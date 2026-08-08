@@ -81,15 +81,7 @@ export async function POST(request: Request) {
       return errorResponse({ message: "登録に失敗しました。時間をおいてからもう一度お試しください" }, 500);
     }
 
-    return NextResponse.json(
-      {
-        message: data.session
-          ? "登録が完了しました"
-          : "確認メールを送信しました。メール内のリンクから登録を完了してください",
-        requiresEmailConfirmation: data.session === null,
-      },
-      { status: 201 },
-    );
+    return NextResponse.json({ message: "登録が完了しました" }, { status: 201 });
   } catch (error) {
     console.error("Unexpected sign-up error", error);
     return errorResponse({ message: "登録に失敗しました。時間をおいてからもう一度お試しください" }, 500);

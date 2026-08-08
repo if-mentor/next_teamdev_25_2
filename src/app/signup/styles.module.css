@@ -82,8 +82,7 @@
   margin-top: 28px;
 }
 
-.errorMessage,
-.successMessage {
+.errorMessage {
   width: 100%;
   margin-top: 20px;
   padding: 12px 14px;
@@ -98,14 +97,10 @@
   color: #b42318;
 }
 
-.successMessage {
-  border: 1px solid #a6dfc1;
-  background: #f0fbf5;
-  color: #157347;
-}
-
 .loginGuide {
-  margin-top: 24px;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
   color: #66707d;
   font-size: 13px;
 }

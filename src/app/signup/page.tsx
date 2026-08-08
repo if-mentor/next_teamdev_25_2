@@ -11,9 +11,7 @@ export default function SignupPage() {
     <main className={styles.main}>
       <section className={styles.card} aria-labelledby="signup-title">
         <div className={styles.heading}>
-          <p className={styles.eyebrow}>WELCOME</p>
           <h1 id="signup-title">新規登録</h1>
-          <p>必要な情報を入力して、アカウントを作成してください。</p>
         </div>
         <SignupForm />
       </section>
