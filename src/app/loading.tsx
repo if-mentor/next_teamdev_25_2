@@ -22,12 +22,9 @@ export default function Loading() {
         </form>
 
         <div className={styles.articlesList}>
-          <CardSkeleton />
-          <CardSkeleton />
-          <CardSkeleton />
-          <CardSkeleton />
-          <CardSkeleton />
-          <CardSkeleton />
+          {Array.from({ length: 8 }).map((_, index) => (
+            <CardSkeleton key={index} />
+          ))}
         </div>
       </main>
     </div>
