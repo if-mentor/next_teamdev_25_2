@@ -3,9 +3,23 @@
 import Link from "next/link";
 import { useState } from "react";
 import styles from "./styles.module.css";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const router = useRouter();
+
+  const handleLogout = async () => {
+    const response = await fetch("/api/logout", {
+      method: "POST",
+    });
+    if (!response.ok) {
+      console.error("ログアウトに失敗しました");
+      return;
+    }
+    setIsAuthenticated(false);
+    router.push("/login");
+  };
 
   return (
     <header className={styles.header}>
@@ -16,11 +30,7 @@ const Header = () => {
               <Link href="/articles/new" className={`${styles.button} ${styles.outlineButton}`}>
                 新規作成
               </Link>
-              <button
-                type="button"
-                className={`${styles.button} ${styles.primaryButton}`}
-                onClick={() => setIsAuthenticated(false)}
-              >
+              <button type="button" className={`${styles.button} ${styles.primaryButton}`} onClick={handleLogout}>
                 ログアウト
               </button>
             </>
