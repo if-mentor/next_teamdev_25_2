@@ -5,7 +5,9 @@ import type { Database } from "@/types/database.types";
 const supabaseUrl = process.env.SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_PUBLISHABLE_KEY;
 
-export const createClient = (cookieStore: Awaited<ReturnType<typeof cookies>>) => {
+export const createClient = async () => {
+  const cookieStore = await cookies();
+
   return createServerClient<Database>(supabaseUrl!, supabaseKey!, {
     cookies: {
       getAll() {

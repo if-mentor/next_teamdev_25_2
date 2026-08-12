@@ -1,25 +1,32 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Link from "next/link";
+import { headers } from "next/headers";
 import Card from "@/components/Card";
 import styles from "./styles.module.css";
 
-import { createClient } from "@/utils/supabase/server";
-import { cookies } from "next/headers";
-import { notFound } from "next/navigation";
 import { formatElapsedTime } from "@/utils/formatElapsedTime";
+import { Post } from "@/types/articles";
 
 export default async function Home() {
-  const cookieStore = await cookies();
-  const supabase = createClient(cookieStore);
+  const headerList = await headers();
+  const host = headerList.get("host");
+  const protocol = headerList.get("x-forwarded-proto") ?? "http";
 
-  const { data: posts, error } = await supabase
-    .from("posts")
-    .select("id, title, users(name), categories(name), image_path, content, created_at")
-    .order("created_at", { ascending: false });
+  const res = await fetch(`${protocol}://${host}/api/articles`, {
+    method: "GET",
+    cache: "no-store",
+  });
 
-  if (error) throw new Error(error.message);
-  if (!posts) return notFound();
+  if (!res.ok) {
+    throw new Error(`Failed to fetch articles: ${res.status}`);
+  }
+
+  const posts: Post[] = await res.json();
+
+  if (!posts) {
+    throw new Error("Failed to fetch articles: empty response");
+  }
 
   return (
     <div>
@@ -50,7 +57,7 @@ export default async function Home() {
                     title={post.title}
                     author={post.users.name}
                     category={post.categories.name}
-                    thumbnailUrl={post.image_path}
+                    thumbnailUrl={`${process.env.SUPABASE_URL}/storage/v1/object/public/teamdev/${post.image_path}`}
                     content={post.content}
                     createdAt={formatElapsedTime(post.created_at)}
                   />
