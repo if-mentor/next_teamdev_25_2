@@ -10,7 +10,7 @@ const Input = ({ label, error = "", variantSize = "medium", ...inputProps }: Inp
         {label}
       </label>
       <input
-        className={`${styles.input} ${styles[variantSize]} ${hasError && styles.input_error}`}
+        className={[styles.input, styles[variantSize], hasError ? styles.input_error : ""].filter(Boolean).join(" ")}
         aria-invalid={hasError}
         aria-describedby={hasError ? `${inputProps.name}-error` : undefined}
         {...inputProps}
