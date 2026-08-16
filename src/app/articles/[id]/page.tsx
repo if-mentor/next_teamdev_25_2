@@ -4,34 +4,75 @@ import Button from "@/components/Button";
 import CommentForm from "@/components/CommentForm";
 import CommentCard from "@/components/CommentCard";
 
-export default function ArticleDetail() {
+import { createServerSupabaseClient } from "@/libs/supabase/server";
+
+type ArticleDetailProps = {
+  params: Promise<{
+    id: string;
+  }>;
+};
+
+export default async function ArticleDetail({ params }: ArticleDetailProps) {
+  const { id } = await params;
+
+  const supabase = createServerSupabaseClient();
+
+  const { data: post, error } = await supabase
+    .from("posts")
+    .select(
+      `
+    *,
+    users (
+      name,
+      image_path
+    ),
+    categories (
+      name
+    )
+  `,
+    )
+    .eq("id", id)
+    .single();
+
+  if (error || !post) {
+    return <p>記事の取得に失敗しました。</p>;
+  }
+
+  const { data: imageData } = supabase.storage.from("teamdev").getPublicUrl(post.image_path);
+  const userImagePath = post.users?.image_path;
+  const userIconUrl = userImagePath
+    ? supabase.storage.from("teamdev").getPublicUrl(userImagePath).data.publicUrl
+    : "/default_user_icon.png";
+
+  const createdAt = new Date(post.created_at).toLocaleString("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "Asia/Tokyo",
+  });
   return (
     <>
       <div className={styles.main}>
         <div className={styles.content}>
           <div className={styles.header}>
-            <p className={styles.title}>Blog Title</p>
+            <p className={styles.title}>{post.title}</p>
 
             <div className={styles.authorIcon}>
-              <p className={styles.author}>Author</p>
-              <Image src="/default_user_icon.png" alt="アイコン" width={32} height={32} />
+              <p className={styles.author}>{post.users?.name}</p>
+              <Image src={userIconUrl} alt="アイコン" width={32} height={32} />
             </div>
           </div>
 
-          <Image className={styles.articlePicture} src="/sample1.jpg" alt="記事写真" width={640} height={320} />
+          <Image className={styles.articlePicture} src={imageData.publicUrl} alt="記事写真" width={640} height={320} />
 
           <div className={styles.categoryWrapper}>
-            <p className={styles.category}>Category</p>
+            <p className={styles.category}>{post.categories?.name}</p>
           </div>
 
           <div className={styles.text}>
-            <p>こんにちは〜についてのブログを書きます。</p>
-            <p>今日はいいお天気で〜をして楽しみました。</p>
-          </div>
-
-          <div className={styles.text}>
-            <p>とてもいい事がありまして、詳細は〜です。</p>
-            <p>最後まで読んで下さり、ありがとうございました。</p>
+            <p>{post.content}</p>
           </div>
 
           <div className={styles.buttonWrapper}>
@@ -39,7 +80,7 @@ export default function ArticleDetail() {
           </div>
 
           <div className={styles.timeWrapper}>
-            <p className={styles.time}>a min ago</p>
+            <p className={styles.time}>{createdAt}</p>
           </div>
         </div>
       </div>
