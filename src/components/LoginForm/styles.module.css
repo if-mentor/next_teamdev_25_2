@@ -34,3 +34,10 @@
 .signUpLink:hover {
   text-decoration: underline;
 }
+
+.errorMessage {
+  margin: 0 0 16px;
+  color: #d32f2f;
+  font-size: 14px;
+  font-weight: 700;
+}
