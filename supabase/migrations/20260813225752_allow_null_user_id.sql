@@ -1,0 +1,2 @@
+ALTER TABLE public.posts
+ALTER COLUMN user_id DROP NOT NULL;

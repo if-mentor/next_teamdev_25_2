@@ -12,6 +12,7 @@ const ImageUploadFile = ({
   accept = DEFAULT_ACCEPT,
   maxFileSize = DEFAULT_MAX_FILE_SIZE,
   disabled = false,
+  onErrorChange,
 }: ImageUploadFileProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -38,6 +39,7 @@ const ImageUploadFile = ({
     if (!ALLOWED_FILE_TYPES.includes(file.type)) {
       setPreviewUrl(null);
       setErrorMessage("png / jpeg / jpg の画像を選択してください。");
+      onErrorChange?.(true);
       event.target.value = "";
       return;
     }
@@ -45,6 +47,7 @@ const ImageUploadFile = ({
     if (file.size > maxFileSize) {
       setPreviewUrl(null);
       setErrorMessage("3MB以下の画像を選択してください。");
+      onErrorChange?.(true);
       event.target.value = "";
       return;
     }
@@ -53,6 +56,7 @@ const ImageUploadFile = ({
 
     setPreviewUrl(objectUrl);
     setErrorMessage("");
+    onErrorChange?.(false);
   };
 
   return (
@@ -69,7 +73,15 @@ const ImageUploadFile = ({
         )}
       </button>
 
-      <input ref={inputRef} type="file" accept={accept} disabled={disabled} onChange={handleChange} hidden />
+      <input
+        ref={inputRef}
+        type="file"
+        name="image"
+        accept={accept}
+        disabled={disabled}
+        onChange={handleChange}
+        hidden
+      />
 
       {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
     </div>
