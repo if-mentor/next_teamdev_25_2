@@ -3,4 +3,5 @@ export type ImageUploadFileProps = {
   accept?: string;
   maxFileSize?: number;
   disabled?: boolean;
+  onErrorChange?: (hasError: boolean) => void;
 };
