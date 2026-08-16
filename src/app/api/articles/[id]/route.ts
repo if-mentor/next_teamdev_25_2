@@ -29,6 +29,12 @@ export async function DELETE(request: Request, { params }: { params: Promise<{ i
   }
 
   // ストレージの画像も削除する
+  //   const {data}=await supabase.storage
+  //   .from("blog_image/posts")
+  //   .remove([post.image_path])
+  //   if(error){
+  //     console.error("画像削除エラー：",error)
+  //   }
 
   return Response.json({
     success: true,
